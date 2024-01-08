@@ -1,0 +1,90 @@
+:root{
+  /* Theme 1 */
+  /* Backgrounds */
+  --backgroundApp1: hsl(222, 26%, 31%);
+  --backgroundToggleAndKeypad1: hsl(223, 31%, 20%);
+  --backgroundScreen1: hsl(224, 36%, 15%);
+
+  /* Keys */
+  --keyBackgroundDelAndReset1: hsl(225, 21%, 49%);
+  --keyBackgroundDelAndResetOpacity1: hsl(224, 27%, 65%);
+  --keyShadowDelAndReset1: hsl(224, 28%, 35%);
+
+  --keyBackgroundEqualAndToggle1: hsl(6, 63%, 50%);
+  --keyBackgroundEqualAndToggleOpacity1: hsl(6, 71%, 60%);
+  --keyShadowEqual1: hsl(6, 70%, 34%);
+  
+  --keyBackgroundNumbers1: hsl(30, 25%, 89%);
+  --keyBackgroundNumbersOpacity1: hsl(0, 0%, 100%);
+  --keyShadowNumbers1: hsl(28, 16%, 65%);
+
+  /* Text */
+  --numbersTheme1: hsl(221, 14%, 31%);
+  --textTheme1: hsl(0, 0%, 100%);
+  --textEqualTheme1: hsl(0, 0%, 100%);
+  --textDelReset1: hsl(0, 0%, 100%);
+
+  /* Theme 2 */
+  /* Backgrounds */
+  --backgroundApp2: hsl(0, 0%, 90%);
+  --backgroundToggleAndKeypad2: hsl(0, 5%, 81%);
+  --backgroundScreen2: hsl(0, 0%, 93%);
+
+  /* Keys */
+  --keyBackgroundDelAndReset2: hsl(185, 42%, 37%);
+  --keyBackgroundDelAndResetOpacity2: hsl(185, 38%, 59%);
+  --keyShadowDelAndReset2: hsl(185, 58%, 25%);
+
+  --keyBackgroundEqualAndToggle2: hsl(25, 98%, 40%);
+  --keyBackgroundEqualAndToggleOpacity2: hsl(25, 86%, 59%);
+  --keyShadowEqual2: hsl(25, 99%, 27%);
+  
+  --keyBackgroundNumbers2: hsl(45, 7%, 89%);
+  --keyBackgroundNumbersOpacity2: hsl(0, 0%, 100%);
+  --keyShadowNumbers2: hsl(35, 11%, 61%);
+
+  /* Text */
+  --numbersTheme2: hsl(60, 10%, 19%);
+  --textTheme2: hsl(60, 10%, 19%);
+  --textEqualTheme2: hsl(0, 0%, 100%);
+  --textDelReset2: hsl(0, 0%, 100%);
+
+  /* Theme 3 */
+  /* Backgrounds */
+  --backgroundApp3: hsl(268, 75%, 9%);
+  --backgroundToggleAndKeypad3: hsl(268, 71%, 12%);
+  --backgroundScreen3: hsl(268, 71%, 12%);
+
+  /* Keys */
+  --keyBackgroundDelAndReset3: hsl(281, 89%, 26%);
+  --keyBackgroundDelAndResetOpacity3: hsl(281, 58%, 37%);
+  --keyShadowDelAndReset3: hsl(285, 91%, 52%);
+
+  --keyBackgroundEqualAndToggle3: hsl(176, 100%, 44%);
+  --keyBackgroundEqualAndToggleOpacity3: hsl(177, 98%, 82%);
+  --keyShadowEqual3: hsl(177, 92%, 70%);
+  
+  --keyBackgroundNumbers3: hsl(268, 47%, 21%);
+  --keyBackgroundNumbersOpacity3: hsl(269, 68%, 44%);
+  --keyShadowNumbers3: hsl(290, 70%, 36%);
+
+  /* Text */
+  --numbersTheme3: hsl(52, 100%, 62%);
+  --textEqualTheme3: hsl(198, 20%, 13%);
+  --textTheme3: hsl(52, 100%, 62%);
+  --textDelReset3: hsl(0, 0%, 100%);
+}
+
+html{
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*, *::after, *::before{
+  box-sizing: inherit;
+}
+
+body{
+  font-size: 3.2rem;
+  font-family: 'League Spartan', sans-serif;
+}

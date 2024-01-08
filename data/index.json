@@ -1,0 +1,164 @@
+[
+    {
+        "id": 1,
+        "text": "7",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "number"
+    },
+    {
+        "id": 2,
+        "text": "8",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "number"
+    },
+    {
+        "id": 3,
+        "text": "9",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "number"
+    },
+    {
+        "id": 4,
+        "text": "DEL",
+        "background": "var(--keyBackgroundDelAndReset",
+        "backgroundOpacity": "var(--keyBackgroundDelAndResetOpacity",
+        "shadow": "var(--keyShadowDelAndReset",
+        "color": "var(--textDelReset",
+        "name": "delete"
+    },
+    {
+        "id": 5,
+        "text": "4",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "number"
+    },
+    {
+        "id": 6,
+        "text": "5",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "number"
+    },
+    {
+        "id": 7,
+        "text": "6",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "number"
+    },
+    {
+        "id": 8,
+        "text": "+",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "operator"
+    },
+    {
+        "id": 9,
+        "text": "1",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "number"
+    },
+    {
+        "id": 10,
+        "text": "2",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "number"
+    },
+    {
+        "id": 11,
+        "text": "3",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "number"
+    },
+    {
+        "id": 12,
+        "text": "-",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "operator"
+    },
+    {
+        "id": 13,
+        "text": ".",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "point"
+    },
+    {
+        "id": 14,
+        "text": "0",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "number"
+    },
+    {
+        "id": 15,
+        "text": "/",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "operator"
+    },
+    {
+        "id": 16,
+        "text": "x",
+        "background": "var(--keyBackgroundNumbers",
+        "backgroundOpacity": "var(--keyBackgroundNumbersOpacity",
+        "shadow": "var(--keyShadowNumbers",
+        "color": "var(--numbersTheme",
+        "name": "operator"
+    },
+    {
+        "id": 17,
+        "text": "reset",
+        "background": "var(--keyBackgroundDelAndReset",
+        "backgroundOpacity": "var(--keyBackgroundDelAndResetOpacity",
+        "shadow": "var(--keyShadowDelAndReset",
+        "color": "var(--textDelReset",
+        "name": "reset"
+    },
+    {
+        "id": 18,
+        "text": "=",
+        "background": "var(--keyBackgroundEqualAndToggle",
+        "backgroundOpacity": "var(--keyBackgroundEqualAndToggleOpacity",
+        "shadow": "var(--keyShadowEqual",
+        "color": "var(--textEqualTheme",
+        "name": "equal"
+    }
+]
