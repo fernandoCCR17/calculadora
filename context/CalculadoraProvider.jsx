@@ -9,8 +9,7 @@ function CalculadoraProvider({children}){
     const [screenText, setScreenText] = useState("")
     const [cantidades, setCantidades] = useState([])
     const [operadores, setOperadores] = useState([])
-    const [borrar, setBorrar] = useState(true)
-    const [total, setTotal] = useState(0)
+    const [borrarTotal, setBorrarTotal] = useState(false)
 
     useEffect(() => {
         async function obtenerDatos() {
@@ -64,6 +63,7 @@ function CalculadoraProvider({children}){
 
         if(negative){
             textScreen = textScreen.slice(1)
+            return
         }
 
         if(textScreen.length > 3){
@@ -84,6 +84,11 @@ function CalculadoraProvider({children}){
     }
 
     const handleNumbers = e => {
+        if(borrarTotal){
+            setScreenText(e.target.value)
+            return 
+        }
+
         const text = `${screenText}${e.target.value}`.split(".")
         let textLeft = handleScreen(text[0])
         let textRight = ""
@@ -101,7 +106,7 @@ function CalculadoraProvider({children}){
         }
 
         if(e.target.value === "0" && text[1][0] === "0"){
-            setBorrar(false)
+            // setBorrar(false)
             setScreenText([textLeft, "0"].join("."))
             return
         }
@@ -111,11 +116,18 @@ function CalculadoraProvider({children}){
     }
 
     const handleOperator = e => {
+        if(borrarTotal){
+            setBorrarTotal(false)
+        }
+
         if(cantidades.length === 0 && screenText === ""){
             return
         }
 
         if(screenText === ""){
+            const newOperadores = [...operadores]
+            newOperadores[newOperadores.length - 1] = e.target.value
+            setOperadores(newOperadores)
             return
         }
 
@@ -125,19 +137,23 @@ function CalculadoraProvider({children}){
     }
 
     const handleDelete = () => {
+        if(borrarTotal){
+            setScreenText("")
+        }
+
         const textSplit = screenText.split(".")
         let textLeft = textSplit[0]
         let textRight = textSplit[1]
+        
+        if((textRight && textRight.length === 1) || textRight === ""){
+            // setBorrar(true)
+            setScreenText(textLeft)
+            return
+        }
 
         if(!textRight){
             const newTextScreen = handleScreen(textLeft.slice(0, textLeft.length - 1))
             setScreenText(newTextScreen)
-            return
-        }
-
-        if(textRight && textRight.length === 1){
-            setBorrar(true)
-            setScreenText(textLeft)
             return
         }
 
@@ -149,30 +165,33 @@ function CalculadoraProvider({children}){
         setScreenText("")
         setCantidades([])
         setOperadores([])
-        setBorrar(true)
+        setBorrarTotal(false)
     }
 
     const handleEqual = () => {
         //si es la primera cantidad que ingresa y aprieta "=" devolverá lo que este en pantalla
         if(cantidades.length === 0 && screenText !== "" ){
+            console.logdades.l
             setScreenText(screenText)
             return
         }
         
         //si no tiene ninguna cantidad guardada previamente y aprieta "=" devolverá un 0
         if(cantidades.length === 0 && screenText === ""){
-            setScreenText("0")
+            console.logdades.l
+            setScreenText("")
             return
         }
         
         if(cantidades.length === 1 && operadores.length === 1 && screenText === ""){
+            console.logdades.l
             setScreenText(cantidades[0])
             return
         }
-
+        
         let auxCan = [...cantidades] // variable auxiliar de cantidades para insertar lo que el usuario tenga en pantalla
         let auxTotal = 0
-
+        
         if(screenText !== ""){
             auxCan.push(screenText)
         }
@@ -197,10 +216,9 @@ function CalculadoraProvider({children}){
             setScreenText(`${textLeft}.${textRight}`)
         }
         
-
         setCantidades([])
         setOperadores([])
-        setBorrar(true)
+        setBorrarTotal(true)
     }
 
     const handlePoint = () => {
