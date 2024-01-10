@@ -10,6 +10,7 @@ function CalculadoraProvider({children}){
     const [cantidades, setCantidades] = useState([])
     const [operadores, setOperadores] = useState([])
     const [borrarTotal, setBorrarTotal] = useState(false)
+    const [isNegative, setIsNegative] = useState(false)
 
     useEffect(() => {
         async function obtenerDatos() {
@@ -32,14 +33,26 @@ function CalculadoraProvider({children}){
     }, [])
 
     const functionOperaciones = {
-        "+": (number1, number2) => Number(number1.replaceAll(",", "")) + Number(number2.replaceAll(",", "")),  
-        "-": (number1, number2) => Number(number1.replaceAll(",", "")) - Number(number2.replaceAll(",", "")),  
+        "+": (number1, number2) => {
+            const result = Number(number1.replaceAll(",", "")) + Number(number2.replaceAll(",", ""))
+            
+            return !Number.isInteger(result) ? result.toFixed(2) : result
+        },  
+        "-": (number1, number2) => {
+            const result = Number(number1.replaceAll(",", "")) - Number(number2.replaceAll(",", ""))
+            
+            return !Number.isInteger(result) ? result.toFixed(2) : result
+        },  
         "/": (number1, number2) => {
             const result = Number(number1.replaceAll(",", "")) / Number(number2.replaceAll(",", ""))
 
             return !Number.isInteger(result) ? result.toFixed(2) : result
         },  
-        "x": (number1, number2) => Number(number1.replaceAll(",", "")) * Number(number2.replaceAll(",", "")),  
+        "x": (number1, number2) => {
+            const result = Number(number1.replaceAll(",", "")) * Number(number2.replaceAll(",", ""))
+
+            return !Number.isInteger(result) ? result.toFixed(2) : result
+        },  
     }
 
 
@@ -86,38 +99,55 @@ function CalculadoraProvider({children}){
     const handleNumbers = e => {
         if(borrarTotal){
             setScreenText(e.target.value)
+            setBorrarTotal(false)
             return 
         }
 
-        const text = `${screenText}${e.target.value}`.split(".")
+        let textScreen = `${screenText}${e.target.value}`
+        if(isNegative){
+            textScreen = textScreen.slice(1)
+        }
+        const text = textScreen.split(".")
         let textLeft = handleScreen(text[0])
         let textRight = ""
 
+
         // Si no existe decimal y la parte entera tiene mas de un dígito y el primer dígito es igual a 0 Ej= 03
         if(!text[1] && textLeft.length > 1 && textLeft[0] === "0"){
-            setScreenText(textLeft.slice(1))//imprime en pantalla 3
+            setScreenText(`${isNegative ? "-" : ""}${textLeft.slice(1)}`)//imprime en pantalla 3
             return
         }
 
         // si el número no cuenta con parte decimal, enviamos la parte entera
         if(!text[1]){
-            setScreenText(textLeft)
+            setScreenText(`${isNegative ? "-" : ""}${textLeft}`)
             return
         }
 
         if(e.target.value === "0" && text[1][0] === "0"){
-            // setBorrar(false)
-            setScreenText([textLeft, "0"].join("."))
+            setScreenText(`${isNegative ? "-" : ""}${textLeft}.0`)
             return
         }
         
         textRight = handleScreen(text[1])
-        setScreenText([textLeft, textRight].join("."))
+        setScreenText(`${isNegative ? "-" : ""}${textLeft}.${textRight}`)
     }
 
     const handleOperator = e => {
         if(borrarTotal){
             setBorrarTotal(false)
+        }
+
+        if(isNegative && screenText.length > 1){
+            setIsNegative(false)
+        }else if(isNegative && screenText.length <= 1){
+            return
+        }
+
+        if(screenText.length === 0 && e.target.value === "-"){
+            setScreenText("-")
+            setIsNegative(true)
+            return
         }
 
         if(cantidades.length === 0 && screenText === ""){
@@ -139,26 +169,35 @@ function CalculadoraProvider({children}){
     const handleDelete = () => {
         if(borrarTotal){
             setScreenText("")
+            return
+        }
+
+        if(isNegative && screenText.length <= 2){
+            setScreenText("")
+            setIsNegative(false)
+            return 
         }
 
         const textSplit = screenText.split(".")
         let textLeft = textSplit[0]
+        if(isNegative){
+            textLeft = textLeft.slice(1)
+        }
         let textRight = textSplit[1]
         
         if((textRight && textRight.length === 1) || textRight === ""){
-            // setBorrar(true)
-            setScreenText(textLeft)
+            setScreenText(`${isNegative ? "-" : ""}${textLeft}`)
             return
         }
 
         if(!textRight){
             const newTextScreen = handleScreen(textLeft.slice(0, textLeft.length - 1))
-            setScreenText(newTextScreen)
+            setScreenText(`${isNegative ? "-" : ""}${newTextScreen}`)
             return
         }
 
         const newTextScreen = handleScreen(textRight.slice(0, textRight.length - 1))
-        setScreenText(`${textLeft}.${newTextScreen}`)
+        setScreenText(`${isNegative ? "-" : ""}${textLeft}.${newTextScreen}`)
     }
     
     const handleReset = () => {
@@ -166,26 +205,28 @@ function CalculadoraProvider({children}){
         setCantidades([])
         setOperadores([])
         setBorrarTotal(false)
+        setIsNegative(false);
     }
 
     const handleEqual = () => {
         //si es la primera cantidad que ingresa y aprieta "=" devolverá lo que este en pantalla
         if(cantidades.length === 0 && screenText !== "" ){
-            console.logdades.l
             setScreenText(screenText)
             return
         }
         
-        //si no tiene ninguna cantidad guardada previamente y aprieta "=" devolverá un 0
+        //si no tiene ninguna cantidad guardada previamente y aprieta "=" devolverá un ""
         if(cantidades.length === 0 && screenText === ""){
-            console.logdades.l
             setScreenText("")
             return
         }
         
         if(cantidades.length === 1 && operadores.length === 1 && screenText === ""){
-            console.logdades.l
             setScreenText(cantidades[0])
+            setCantidades([])
+            setOperadores([])
+            setIsNegative(false)
+            setBorrarTotal(true)
             return
         }
         
@@ -205,23 +246,38 @@ function CalculadoraProvider({children}){
                 auxTotal = functionOperaciones[operador](auxTotal.toString(), auxCan[i]) 
             }
         }
+        
+        let auxIsNegative = false;
+        let text = auxTotal.toString()
+        if(auxTotal < 0){
+            setIsNegative(true)
+            auxIsNegative = true
+            text = text.slice(1)
+        }
 
-        const textSplit = auxTotal.toString().split(".")
-        const textLeft = handleScreen(textSplit[0])
+        console.log(text)
+        const textSplit = text.split(".")
+
+        let textLeft = handleScreen(textSplit[0])
         
         if(!textSplit[1]){
-            setScreenText(textLeft)
+            setScreenText(`${auxIsNegative ? "-" : ""}${textLeft}`)
         }else{
             const textRight = handleScreen(textSplit[1])
-            setScreenText(`${textLeft}.${textRight}`)
+            setScreenText(`${auxIsNegative ? "-" : ""}${textLeft}.${textRight}`)
         }
         
         setCantidades([])
         setOperadores([])
+        setIsNegative(false)
         setBorrarTotal(true)
     }
 
     const handlePoint = () => {
+        if(borrarTotal){
+            setBorrarTotal(false)
+        }
+
         if(screenText.indexOf(".") != -1){
             return
         }
@@ -252,7 +308,14 @@ function CalculadoraProvider({children}){
                 buttons,
                 handleNumbers,
                 screenText,
-                functions
+                setScreenText,
+                functions,
+                handleScreen,
+                borrarTotal,
+                setBorrarTotal,
+                setOperadores,
+                isNegative,
+                setIsNegative
             }}
         >
             {children}

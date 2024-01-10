@@ -21,6 +21,7 @@
   /* Text */
   --numbersTheme1: hsl(221, 14%, 31%);
   --textTheme1: hsl(0, 0%, 100%);
+  --textPlaceholderTheme1: hsl(0, 1%, 60%);
   --textEqualTheme1: hsl(0, 0%, 100%);
   --textDelReset1: hsl(0, 0%, 100%);
 
@@ -46,6 +47,7 @@
   /* Text */
   --numbersTheme2: hsl(60, 10%, 19%);
   --textTheme2: hsl(60, 10%, 19%);
+  --textPlaceholderTheme2: hsl(60, 1%, 52%);
   --textEqualTheme2: hsl(0, 0%, 100%);
   --textDelReset2: hsl(0, 0%, 100%);
 
@@ -72,6 +74,7 @@
   --numbersTheme3: hsl(52, 100%, 62%);
   --textEqualTheme3: hsl(198, 20%, 13%);
   --textTheme3: hsl(52, 100%, 62%);
+  --textPlaceholderTheme3: hsl(52, 100%, 71%);
   --textDelReset3: hsl(0, 0%, 100%);
 }
 
